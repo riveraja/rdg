@@ -65,10 +65,7 @@ fn run_hset(u: String, cnt: i32) {
         let key = format!("hkey:{}", format!("{:0>8}",idx));
         let name:String = Name(EN).fake();
         let company:String = CompanyName(EN).fake();
-        
-        // v.insert(String::from("company"),company);
-        // v.insert(String::from("name"),name);
-        // let _: () = redis::cmd("HSET").arg(key).arg(&v).query(&mut conn).expect("failed");
+
         let _: () = conn.hset_multiple(key, &[(String::from("name"),name),(String::from("company"),company)]).expect("failed");
     }
 }
@@ -76,18 +73,18 @@ fn run_hset(u: String, cnt: i32) {
 fn run_json_set(u: String, cnt: i32) {
     let mut conn = connect(u);
     let mut idx: i32 = 0;
-    let company:String = CompanyName(EN).fake();
-    let industry:String = Industry(EN).fake();
-    let startdate:String = Date(EN).fake();
-    let city:String = CityName(EN).fake();
-    let street:String = StreetName(EN).fake();
-    let country:String = CountryName(EN).fake();
-    let zip:String = ZipCode(EN).fake();
-    let info:Vec<String> = Words(3..8).fake();
 
     while idx < cnt {
         idx = idx + 1;
         let key = format!("jkey:{}",format!("{:0>8}",idx));
+        let company:String = CompanyName(EN).fake();
+        let industry:String = Industry(EN).fake();
+        let startdate:String = Date(EN).fake();
+        let city:String = CityName(EN).fake();
+        let street:String = StreetName(EN).fake();
+        let country:String = CountryName(EN).fake();
+        let zip:String = ZipCode(EN).fake();
+        let info:Vec<String> = Words(3..8).fake();
         let jsonval = json!({
             "company": company,
             "industry": industry,
