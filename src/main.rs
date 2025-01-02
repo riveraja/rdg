@@ -1,6 +1,4 @@
 use redis::Commands;
-// use redis::JsonCommands;
-// use std::env;
 use std::time::{Instant};
 use serde_json::json;
 use rustop::opts;
@@ -11,7 +9,6 @@ use fake::locales::*;
 use fake::faker::time::raw::*;
 use fake::faker::address::raw::*;
 use fake::faker::lorem::en::*;
-// use std::collections::BTreeMap;
 
 fn main() {
     let start = Instant::now();
@@ -22,7 +19,7 @@ fn main() {
         opt count:i32=1000, desc:"Total count of records to be generated. [default: 1000]";
         opt types:Vec<String>, desc:"Types of commands to execute.";
     }.parse_or_exit();
-    println!("Hello, world!");
+    println!("Generating data");
     if args.types.contains(&"set".to_string()) {
         run_set((*args.redis_uri).to_string(), args.count);
     }
@@ -47,7 +44,7 @@ fn connect(uri: String) -> redis::Connection {
 fn run_set(u: String, cnt: i32) {
     let mut conn = connect(u);
     let mut idx: i32 = 0;
-
+    println!("{} SET", cnt);
     while idx < cnt {
         idx = idx + 1;
         let key = format!("skey:{}", format!("{:0>8}",idx));
@@ -57,9 +54,8 @@ fn run_set(u: String, cnt: i32) {
 
 fn run_hset(u: String, cnt: i32) {
     let mut conn = connect(u);
-    // let mut v: BTreeMap<String, String> = BTreeMap::new();
     let mut idx: i32 = 0;
-
+    println!("{} HSET", cnt);
     while idx < cnt {
         idx = idx + 1;
         let key = format!("hkey:{}", format!("{:0>8}",idx));
@@ -73,7 +69,7 @@ fn run_hset(u: String, cnt: i32) {
 fn run_json_set(u: String, cnt: i32) {
     let mut conn = connect(u);
     let mut idx: i32 = 0;
-
+    println!("{} JSON.SET", cnt);
     while idx < cnt {
         idx = idx + 1;
         let key = format!("jkey:{}",format!("{:0>8}",idx));
