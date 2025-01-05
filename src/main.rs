@@ -15,20 +15,20 @@ fn main() {
     let (args, _) = opts! {
         version "v0.4.0";
         synopsis "redis-data-generater: A data generator written in Rust for Redis/Valkey";
-        opt redis_uri:String="redis://127.0.0.1:6379".to_string(), desc:"The Redis connection string. [default: redis://127.0.0.1:6379]";
-        opt count:usize=1000, desc:"Total count of records to be generated. [default: 1000]";
+        opt uri:String="redis://127.0.0.1:6379".to_string(), desc:"The Redis connection string.";
+        opt count:usize=1000, desc:"Total count of records to be generated.";
         opt types:Vec<String>, desc:"Types of commands to execute.";
         opt batch:usize=50, desc:"Pipeline size.";
     }.parse_or_exit();
     println!("Generating data");
     if args.types.contains(&"set".to_string()) {
-        run_set((*args.redis_uri).to_string(), args.count, args.batch);
+        run_set((*args.uri).to_string(), args.count, args.batch);
     }
     if args.types.contains(&"hset".to_string()) {
-        run_hset((*args.redis_uri).to_string(), args.count, args.batch);
+        run_hset((*args.uri).to_string(), args.count, args.batch);
     }
     if args.types.contains(&"json".to_string()) {
-        run_json_set((*args.redis_uri).to_string(), args.count, args.batch);
+        run_json_set((*args.uri).to_string(), args.count, args.batch);
     }
     let duration = start.elapsed();
     println!("Elapsed time {:?}", duration);
