@@ -13,8 +13,8 @@ use random_number::random;
 fn main() {
     let start = Instant::now();
     let (args, _) = opts! {
-        version "v0.4.0";
-        synopsis "redis-data-generater: A data generator written in Rust for Redis/Valkey";
+        version "v0.5.0";
+        synopsis "rs-data-generator: A data generator written in Rust for Redis/Valkey";
         opt uri:String="redis://127.0.0.1:6379".to_string(), desc:"The Redis connection string.";
         opt count:usize=1000, desc:"Total count of records to be generated.";
         opt types:Vec<String>, desc:"Types of commands to execute.";
