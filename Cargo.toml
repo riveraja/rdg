@@ -4,7 +4,8 @@ version = "0.4.0"
 edition = "2021"
 
 [dependencies]
-redis = "*"
+redis = { version = "0.27.6", features = ["json"] }
 fake = { version = "^3.1.0", features = ["derive","time"] }
 rustop = "1.1.4"
 serde_json = "1.0.134"
+random-number = "0.1.9"

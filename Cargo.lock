@@ -392,6 +392,12 @@ dependencies = [
 ]
 
 [[package]]
+name = "proc-macro-hack"
+version = "0.5.20+deprecated"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "dc375e1527247fe1a97d8b7156678dfe7c1af2fc075c9a4db3690ecd2a148068"
+
+[[package]]
 name = "proc-macro2"
 version = "1.0.92"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -440,10 +446,33 @@ dependencies = [
 ]
 
 [[package]]
+name = "random-number"
+version = "0.1.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7fc8cdd49be664772ffc3dbfa743bb8c34b78f9cc6a9f50e56ae878546796067"
+dependencies = [
+ "proc-macro-hack",
+ "rand",
+ "random-number-macro-impl",
+]
+
+[[package]]
+name = "random-number-macro-impl"
+version = "0.1.8"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f5135143cb48d14289139e4615bffec0d59b4cbfd4ea2398a3770bd2abfc4aa2"
+dependencies = [
+ "proc-macro-hack",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "rdg"
 version = "0.4.0"
 dependencies = [
  "fake",
+ "random-number",
  "redis",
  "rustop",
  "serde_json",
@@ -462,6 +491,8 @@ dependencies = [
  "num-bigint",
  "percent-encoding",
  "ryu",
+ "serde",
+ "serde_json",
  "sha1_smol",
  "socket2",
  "url",
@@ -541,9 +572,9 @@ checksum = "a8f112729512f8e442d81f95a8a7ddf2b7c6b8a1a6f509a95864142b30cab2d3"
 
 [[package]]
 name = "syn"
-version = "2.0.94"
+version = "2.0.95"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "987bc0be1cdea8b10216bd06e2ca407d40b9543468fafd3ddfb02f36e77f71f3"
+checksum = "46f71c0377baf4ef1cc3e3402ded576dccc315800fbc62dfc7fe04b009773b4a"
 dependencies = [
  "proc-macro2",
  "quote",
