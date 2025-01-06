@@ -108,7 +108,7 @@ fn run_json_set(u: String, cnt: usize, bt: usize) {
             "zip": zip,
             "info": info,
             "population": population,
-        }).to_string();
+        });
 
         pipe.json_set(key,"$",&jsonval).expect("failed").ignore();
 
